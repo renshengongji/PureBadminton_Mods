@@ -6,4 +6,5 @@
 
 ### Auto install
 **Windows:** Download and run the `auto.ps1`
+
 **MacOS/Linux:** Download and run `auto.sh`
