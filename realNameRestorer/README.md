@@ -1,3 +1,7 @@
+# Install
+1. Download repository zip
+2. ↓ Read the following
+
 ## Manual install
 1. Find the game folder: `steamapps\common\Pure Badminton Demo\Pure Badminton_Data`
 2. Make a dir `mods` in the `Pure Badminton_Data`
