@@ -2,12 +2,26 @@ $ErrorActionPreference = "SilentlyContinue"
 $scriptPath = $PSScriptRoot
 $sourceFile = Join-Path $scriptPath "characters.json"
 $cacheFile = Join-Path $scriptPath ".gameLoc"
+$remoteFile = "https://raw.githubusercontent.com/renshengongji/PureBadminton_Mods/refs/heads/main/realNameRestorer/characters.json"
 
 if (-not (Test-Path $sourceFile)) {
-    Write-Host "Error: 'characters.json' not found." -ForegroundColor Red
-    Write-Host "Please make sure this file is in the same folder as the script."
-    Read-Host "Press Enter to exit..."
-    exit
+    Write-Host "Attempting to download 'characters.json' from GitHub" -ForegroundColor Cyan
+
+    try {
+        [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+        Invoke-WebRequest -Uri $remoteFile -OutFile $sourceFile -UseBasicParsing
+        
+        if (Test-Path $sourceFile) {
+            Write-Host "Download successful" -ForegroundColor Green
+        } else {
+            throw "Download failed silently"
+        }
+    } catch {
+        Write-Host "Error: Failed to download 'characters.json'." -ForegroundColor Red
+        Write-Host "$($_.Exception.Message)" -ForegroundColor Red
+        Read-Host "Press Enter to exit..."
+        exit
+    }
 }
 
 $selectedGame = $null

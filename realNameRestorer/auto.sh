@@ -2,10 +2,26 @@
 
 sourceFile="./characters.json"
 cacheFile="./.gameLoc"
+remoteFile="https://raw.githubusercontent.com/renshengongji/PureBadminton_Mods/refs/heads/main/realNameRestorer/characters.json"
 
-if [ ! -f "$sourceFile" ]; then
-    echo "Error: 'characters.json' not found."
-    exit 1
+if [ ! -f "$SOURCE_FILE" ]; then
+    echo "Attempting to download 'characters.json' from GitHub..."
+    
+    if command -v curl >/dev/null 2>&1; then
+        curl -L -o "$SOURCE_FILE" "$remoteFile"
+    elif command -v wget >/dev/null 2>&1; then
+        wget -O "$SOURCE_FILE" "$remoteFile"
+    else
+        echo "Error: Neither curl nor wget found. Cannot download file"
+        exit 1
+    fi
+
+    if [ $? -eq 0 ] && [ -f "$SOURCE_FILE" ]; then
+        echo "Download successful"
+    else
+        echo "Error: Download failed."
+        exit 1
+    fi
 fi
 
 selectedGame=""
