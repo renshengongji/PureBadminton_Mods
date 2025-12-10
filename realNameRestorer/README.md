@@ -1,7 +1,7 @@
 # Real Name Restorer
 > Restore the characters real name
 
-If you install the mod after starting a career, the names of the players in this career won't be impacted
+If you install the mod after starting a career, the names of the npc in this career won't be impacted
 
 ## Install
 1. Download repository zip
