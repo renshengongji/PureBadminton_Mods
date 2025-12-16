@@ -17,3 +17,6 @@ If you install the mod after starting a career, the names of the npc in this car
 **Windows:** run the `auto.ps1`
 
 **MacOS/Linux:** run `auto.sh`
+
+## Acknowledgements
+- **Paul (Game Developer)** – for providing the `characters.json` file
